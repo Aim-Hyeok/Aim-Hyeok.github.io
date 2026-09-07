@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>에코주방시스템 | 부산·경남 업소용 주방기기 맞춤 제작·유통 전문</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --steel-dark:#1B1F24;
+    --steel-dark-2:#22272D;
+    --paper:#F3EFE9;
+    --paper-2:#EAE4D9;
+    --ink:#1A1D21;
+    --grey:#767D85;
+    --orange:#E8622C;
+    --orange-dark:#C94F1F;
+    --line:#D8D2C4;
+
+    /* 하단 고정바 전용 컬러 */
+    --btn-blue:#2D5F8A;     /* 문자: 파란색 */
+    --btn-yellow:#FEE500;   /* 카카오톡: 노란색 */
+    --btn-green:#27AE60;    /* 전화: 연두/초록색 */
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+    padding-bottom:72px; /* space for sticky bar */
+  }
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- TOPBAR ---------- */
+  .topbar{
+    background:var(--steel-dark);
+    padding:14px 0;
+    border-bottom:1px solid #2E353C;
+  }
+  .topbar .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .topbar .brand{
+    color:#fff;font-size:16px;font-weight:800;letter-spacing:-0.01em;
+  }
+  .topbar .brand span{color:#F2895F;}
+  .topbar .tel{color:#C9CDD1;font-size:13px;font-weight:600;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:var(--steel-dark);
+    color:#fff;
+    padding:80px 0 52px;
+  }
+  .hero-inner{position:relative;z-index:2;}
+  .hero-tag{
+    display:inline-block;
+    font-size:13.5px;
+    font-weight:600;
+    color:#F0B499;
+    border:1px solid rgba(232,98,44,0.55);
+    padding:5px 12px;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(28px, 5.5vw, 42px);
+    font-weight:800;
+    line-height:1.3;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 .accent{color:#F2895F;}
+  .hero p.sub{
+    margin-top:16px;
+    font-size:15.5px;
+    color:#C9CDD1;
+    line-height:1.6;
+  }
+  .hero .cta{
+    margin-top:28px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--orange);
+    color:#fff;
+    font-size:16.5px;
+    font-weight:700;
+    padding:16px 24px;
+    width:100%;
+    max-width:400px;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:56px 0;}
+  .section-head{margin-bottom:28px;}
+  .section-head h2{font-size:23px;font-weight:800;color:var(--ink);}
+  .section-head p{margin-top:6px;color:var(--grey);font-size:14px;}
+
+  /* ---------- GALLERY ---------- */
+  .gallery-scroll{
+    display:flex;gap:14px;overflow-x:auto;margin:0 -20px;padding:4px 20px 12px;
+    scroll-snap-type:x mandatory;
+  }
+  .gallery-scroll::-webkit-scrollbar{display:none;}
+  .gcard{
+    scroll-snap-align:start;flex:0 0 78%;
+    background:#fff;border:1px solid var(--line);
+  }
+  .gcard .thumb{
+    aspect-ratio:4/3;background:#E7E1D3;display:flex;align-items:center;
+    justify-content:center;color:var(--grey);font-size:13px;text-align:center;padding:12px;
+  }
+  .gcard .cap{padding:12px 14px 16px;}
+  .gcard .cap .place{font-size:12.5px;color:var(--orange-dark);font-weight:700;}
+  .gcard .cap .desc{font-size:14px;font-weight:600;color:var(--ink);margin-top:2px;}
+  @media(min-width:640px){
+    .gallery-scroll{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible;margin:0;padding:0;}
+    .gcard{flex:none;}
+  }
+
+  /* ---------- 3대 차별점 ---------- */
+  .diff-list{border-top:1px solid var(--line);}
+  .diff-item{
+    display:flex;
+    gap:16px;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+    align-items:flex-start;
+  }
+  .diff-icon{
+    flex:0 0 42px;
+    height:42px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--steel-dark);
+    color:#F2895F;
+    font-size:19px;
+  }
+  .diff-item h3{font-size:16px;font-weight:700;margin-bottom:4px;}
+  .diff-item p{font-size:14px;color:var(--grey);line-height:1.55;}
+
+  /* ---------- 화력 검증 영상 ---------- */
+  .video-sec{background:var(--steel-dark);color:#fff;}
+  .video-sec .section-head h2{color:#fff;}
+  .video-sec .section-head p{color:#9AA0A6;}
+  .video-frame{
+    position:relative;
+    aspect-ratio:16/9;
+    background:linear-gradient(135deg,#2A3138,#181B1F);
+    border:1px solid #3A4048;
+    display:flex;align-items:center;justify-content:center;
+    flex-direction:column;
+    gap:12px;
+  }
+  .play-btn{
+    width:56px;height:56px;
+    border-radius:50%;
+    background:var(--orange);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:20px;
+  }
+  .video-frame .vlabel{color:#8B9198;font-size:13px;text-align:center;padding:0 20px;}
+  .video-caption{margin-top:14px;color:#C9CDD1;font-size:14px;text-align:center;}
+
+  /* ---------- PRODUCT LINEUP (4대 카테고리) ---------- */
+  .prod-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:16px;
+  }
+  .pcard{
+    background:#fff;
+    border:1px solid var(--line);
+    border-top:4px solid var(--steel-dark);
+    display:flex;flex-direction:column;
+  }
+  .pcard .pthumb{
+    aspect-ratio:4/3;
+    background:#EFF4F8;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--grey);font-size:13px;text-align:center;padding:12px;
+    border-bottom:1px solid var(--line);
+  }
+  .pcard .pbody{padding:16px;flex:1;display:flex;flex-direction:column;}
+  .pcard h3{font-size:16px;font-weight:700;margin-bottom:6px;}
+  .pcard p{font-size:13.5px;color:var(--grey);flex:1;line-height:1.5;}
+  .pcard .pbtn{
+    margin-top:14px;display:block;text-align:center;
+    background:var(--steel-dark);color:#fff;font-size:13.5px;font-weight:600;padding:10px;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-list{border-top:1px solid var(--line);}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;text-align:left;background:none;padding:18px 0;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:15px;font-weight:700;color:var(--ink);
+  }
+  .faq-q .sym{
+    width:24px;height:24px;display:flex;align-items:center;justify-content:center;
+    background:var(--paper-2);color:var(--orange-dark);font-size:15px;font-weight:700;
+  }
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;color:var(--grey);font-size:14px;}
+  .faq-a p{padding:0 0 18px;}
+  .faq-item.open .faq-a{max-height:200px;}
+  .faq-item.open .faq-q .sym{background:var(--orange);color:#fff;}
+
+  /* ---------- STICKY BOTTOM BAR (3종 분리) ---------- */
+  .sticky-bar{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    display:flex;
+    box-shadow:0 -4px 12px rgba(0,0,0,0.15);
+  }
+  .sticky-bar a{
+    flex:1;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:10px 4px 11px;
+    font-weight:700;font-size:13.5px;
+    text-align:center;
+  }
+  .sticky-bar a span.sub-text{font-size:11px;font-weight:500;opacity:0.88;margin-top:1px;}
+
+  /* 파란색: 문자 문의 */
+  .sticky-bar .btn-sms{background:var(--btn-blue);color:#fff;}
+  /* 노란색: 카카오톡 문의 (링크 미확정 상태) */
+  .sticky-bar .btn-kakao{background:var(--btn-yellow);color:#191919;}
+  /* 연두/초록색: 전화 상담 */
+  .sticky-bar .btn-call{background:var(--btn-green);color:#fff;}
+
+  footer{
+    background:var(--steel-dark);color:#8B9198;
+    text-align:center;padding:24px 20px 36px;font-size:12px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="topbar">
+  <div class="wrap">
+    <span class="brand">에코주방<span>시스템</span></span>
+    <a class="tel" href="tel:18992558">📞 1899-2558</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <span class="hero-tag">부산·경남 업소용 주방기기 맞춤 제작</span>
+    <h1>규격 외 특수 주방도 OK!<br><span class="accent">식당 주방기기 맞춤 제작 전문</span></h1>
+    <p class="sub">중화렌지·가마솥렌지·인덕션·튀김기 등 현장 도면 및 사진 전송 시 5분 내 맞춤 견적을 안내해 드립니다.</p>
+    <a href="sms:01051402585" class="cta">
+      📱 현장 사진 보내고 맞춤 제작 견적 받기
+    </a>
+  </div>
+</header>
+
+<!-- 시공 사례 -->
+<section id="cases">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>에코주방시스템 맞춤 제작 & 시공 사례</h2>
+      <p>현장 구조와 요구사항에 딱 맞게 제작·설치된 실제 주방입니다</p>
+    </div>
+    <div class="gallery-scroll">
+      <div class="gcard">
+        <div class="thumb">[시공 사진]<br>부산 사상구 OO짬뽕</div>
+        <div class="cap">
+          <div class="place">부산 사상구 OO짬뽕</div>
+          <div class="desc">고효율 맞춤 중화 2구 렌지 제작</div>
+        </div>
+      </div>
+      <div class="gcard">
+        <div class="thumb">[시공 사진]<br>경남 김해 OO한식당</div>
+        <div class="cap">
+          <div class="place">경남 김해 OO한식당</div>
+          <div class="desc">대용량 가마솥렌지 & 회전국솥 설치</div>
+        </div>
+      </div>
+      <div class="gcard">
+        <div class="thumb">[시공 사진]<br>부산 해운대구 OO식당</div>
+        <div class="cap">
+          <div class="place">부산 해운대구 OO식당</div>
+          <div class="desc">맞춤형 상업용 인덕션 라인업 구축</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3대 차별점 -->
+<section id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>왜 에코주방시스템인가</h2>
+      <p>업종과 조리 방식에 맞춰 설계부터 시공까지 책임집니다</p>
+    </div>
+    <div class="diff-list">
+      <div class="diff-item">
+        <div class="diff-icon">🔥</div>
+        <div>
+          <h3>업종별 최적 화력·용량 설계</h3>
+          <p>중식·한식·분식 등 조리 방식에 맞춰 화력과 용량을 맞춤 설계합니다.</p>
+        </div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">💸</div>
+        <div>
+          <h3>가스비·열손실 감소</h3>
+          <p>연소 효율 개선으로 가스비를 절감하고 주방 열기를 완화합니다.</p>
+        </div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon">⚡</div>
+        <div>
+          <h3>영업 차질 없는 당일 시공</h3>
+          <p>기존 집기 철거부터 신규 설치까지 신속하게 마감합니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 화력 검증 영상 -->
+<section class="video-sec">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>눈으로 확인하는 강력한 화력</h2>
+    </div>
+    <div class="video-frame">
+      <div class="play-btn">▶</div>
+      <div class="vlabel">[화력 테스트 영상 삽입 위치 · 10~15초]</div>
+    </div>
+    <p class="video-caption">소음은 줄이고 화력은 올린 에코 버너의 실제 가동 모습입니다.</p>
+  </div>
+</section>
+
+<!-- 제품 라인업 (중화렌지외 한식, 인덕션, 튀김기 확장) -->
+<section id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>업종별 대표 주방기기 라인업</h2>
+      <p>원하시는 치수와 스펙으로 주문 제작이 가능합니다</p>
+    </div>
+    <div class="prod-grid">
+      <div class="pcard">
+        <div class="pthumb">[제품 사진]<br>중화렌지</div>
+        <div class="pbody">
+          <h3>중화렌지</h3>
+          <p>고화력 에코 버너 탑재, 불맛 최적화 및 가스비 절감형 맞춤 렌지</p>
+          <a href="chinese-range.html" class="pbtn">더보기</a>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pthumb">[제품 사진]<br>한식용 제품</div>
+        <div class="pbody">
+          <h3>가마솥렌지 / 회전국솥</h3>
+          <p>대용량 국물, 육수, 탕 조리용 고효율 가스/인덕션 국솥 시스템</p>
+          <a href="cauldron-range.html" class="pbtn">더보기</a>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pthumb">[제품 사진]<br>인덕션 주방기기</div>
+        <div class="pbody">
+          <h3>상업용 인덕션 렌지</h3>
+          <p>유해가스 없는 청정 주방, 열손실을 극소화한 친환경 인덕션</p>
+          <a href="induction-range.html" class="pbtn">더보기</a>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pthumb">[제품 사진]<br>튀김기 & 오븐</div>
+        <div class="pbody">
+          <h3>업소용 튀김기 / 기타 기기</h3>
+          <p>정밀 온도 제어 튀김기, 간택기 렌지 및 스텐 주방 맞춤 집기</p>
+          <a href="fryer-etc.html" class="pbtn">더보기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>자주 묻는 질문</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          원하는 치수로 맞춤 주문제작이 가능한가요?
+          <span class="sym">+</span>
+        </button>
+        <div class="faq-a"><p>네, 현장 주방 구조와 가스/전기 배선 위치에 맞춰 특수 치수 맞춤 제작이 가능합니다.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          기존 노후 렌지 철거도 한 번에 해주시나요?
+          <span class="sym">+</span>
+        </button>
+        <div class="faq-a"><p>네, 신규 제품 설치 시 기존 주방 집기 철거부터 배치까지 일괄 진행해 드립니다.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          A/S 보증 기간 및 출장 지역은 어떻게 되나요?
+          <span class="sym">+</span>
+        </button>
+        <div class="faq-a"><p>설치 후 1년간 무상 A/S를 보장하며, 부산·경남 전 지역 신속 출장 대응합니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  에코주방시스템 · 부산·경남 업소용 주방기기 맞춤제작 전문<br>
+  주방 사진이나 도면을 보내주시면 빠른 견적 안내가 가능합니다.
+</footer>
+
+<!-- 하단 고정 바 (3개 버튼: 파란색 문자 / 노란색 카카오톡 / 연두색 전화) -->
+<div class="sticky-bar">
+  <a class="btn-sms" href="sms:01051402585">
+    ✉️ 문자 문의
+    <span class="sub-text">010-5140-2585</span>
+  </a>
+  <!-- 카카오톡 오픈채팅 링크가 아직 없어서, 지금은 눌러도 페이지 이동 없이 안내 문구만 뜨도록 처리했습니다.
+       링크가 준비되면 이 a 태그의 href를 "https://open.kakao.com/o/xxxx" 로 바꾸고 onclick 줄은 지워주세요. -->
+  <a class="btn-kakao" href="#" onclick="event.preventDefault(); alert('카카오톡 상담 채널 준비 중입니다. 문자로 연락 주시면 빠르게 안내해 드릴게요.');">
+    💬 카카오톡
+    <span class="sub-text">1:1 상담</span>
+  </a>
+  <a class="btn-call" href="tel:18992558">
+    📞 전화 상담
+    <span class="sub-text">1899-2558</span>
+  </a>
+</div>
+
+<script>
+function toggleFaq(btn){
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>{
+    i.classList.remove('open');
+    i.querySelector('.sym').textContent = '+';
+  });
+  if(!wasOpen){
+    item.classList.add('open');
+    item.querySelector('.sym').textContent = '−';
+  }
+}
+</script>
+
+</body>
+</html>
