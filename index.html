@@ -59,20 +59,34 @@
   button{font-family:inherit;cursor:pointer;border:none;}
   .wrap{max-width:960px;margin:0 auto;padding:0 20px;}
 
-  /* ---------- TOPBAR ---------- */
+/* ---------- TOPBAR ---------- */
   .topbar{
     background:var(--steel-dark);
-    padding:14px 0;
+    /* 14px였던 위아래 여백을 20px로 늘려서 상단 바 전체 높이를 확보합니다 */
+    padding:20px 0; 
     border-bottom:1px solid #2E353C;
   }
   .topbar .wrap{
     display:flex;align-items:center;justify-content:space-between;
   }
   .topbar .brand{
-    color:#fff;font-size:16px;font-weight:800;letter-spacing:-0.01em;
+    color:#fff;
+    /* '부산·경남...' 기본 글자 크기도 필요하다면 살짝 키우거나 유지합니다 (현재 16px) */
+    font-size:16px; 
+    font-weight:800;
+    letter-spacing:-0.01em;
+    display: flex;
+    align-items: center;
   }
-  .topbar .brand span{color:#F2895F;}
-  .topbar .tel{color:#C9CDD1;font-size:13px;font-weight:600;}
+  /* 주황색 '에코주방시스템' 글자만 타깃해서 확실하게 키웁니다 */
+  .topbar .brand span{
+    color:#F2895F;
+    font-size: 24px; /* 글자 크기를 시원하게 키웠습니다 */
+    font-weight: 900; /* 조금 더 두껍게 강조 */
+    margin-left: 8px; /* 앞의 글자와 살짝 띄워주는 여백 */
+    line-height: 1;
+  }
+  .topbar .tel{color:#C9CDD1;font-size:14px;font-weight:600;}
 
   /* ---------- HERO ---------- */
   .hero{
